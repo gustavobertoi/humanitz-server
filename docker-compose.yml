@@ -1,0 +1,28 @@
+services:
+  humanitz-server:
+    image: gameservermanagers/gameserver:hz
+    container_name: hzserver
+    restart: unless-stopped
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - humanitz-data:/data
+      - ./linuxgsm.cfg:/home/steam/linuxgsm.cfg
+    networks:
+      - humanitz-network
+    ports:
+      - "27025:27025"
+      - "27015:27015/udp"
+      - "27025:27025/udp"
+
+volumes:
+  humanitz-data:
+    driver: local
+
+networks:
+  humanitz-network:
+    driver: bridge
+    external: true
+    name: humanitz-network
