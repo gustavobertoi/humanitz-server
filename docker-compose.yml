@@ -10,6 +10,7 @@ services:
     volumes:
       - humanitz-data:/data
       - ./linuxgsm.cfg:/home/steam/linuxgsm.cfg
+      - ./GameServerSettings.ini:/data/serverfiles/TSSGame/GameServerSettings.ini
     networks:
       - humanitz-network
     ports:
